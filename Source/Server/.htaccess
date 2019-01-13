@@ -1,1 +1,14 @@
-test
+Options -Indexes
+RewriteEngine On
+Order Deny,Allow
+
+RewriteRule ^index\.php$ /? [L,R=301]
+RewriteRule ^(api|(api/(.*)))$ /PHP/API/Handlers/Implementation/RequestHandler.php?method=$3
+
+<FilesMatch "^(.+\..+)$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "^(index|RequestHandler)\.php$">
+    Allow from all
+</FilesMatch>
